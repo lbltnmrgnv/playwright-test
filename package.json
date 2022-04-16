@@ -4,7 +4,8 @@
   "description": "test playwright+mocha",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000 ./specs/**/*.spec.js"
+    "test": "mocha --timeout 10000 ./specs/**/*.spec.js",
+    "test-reporter": "mocha --timeout 10000 ./specs/**/*.spec.js --reporter mocha-allure-reporter"
   },
   "keywords": [
     "pw",
@@ -18,6 +19,7 @@
   "dependencies": {
     "@playwright/test": "^1.20.0",
     "chai": "^4.3.6",
+    "dotenv": "^16.0.0",
     "mocha": "^9.2.2",
     "mocha-allure-reporter": "^1.4.0"
   }
