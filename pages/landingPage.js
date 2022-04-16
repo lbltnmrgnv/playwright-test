@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 class LandingPage {
+    
     /**
      * @param {import('playwright').Page} page 
      */
@@ -9,9 +10,11 @@ class LandingPage {
         this.loginButton = page.locator('text=log in')
         this.registerButton = page.locator('button:has-text("register")')
     }
+
     async navigate() {
         await this.page.goto(process.env.LANDING_URL);
     }
+
     async login() {
         await this.loginButton.click()
     }

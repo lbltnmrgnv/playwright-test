@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 10000 ./specs/**/*.spec.js",
-    "test-reporter": "mocha --timeout 10000 ./specs/**/*.spec.js --reporter mocha-allure-reporter"
+    "test-reporter": "mocha --timeout 50000 ./specs/**/*.spec.js --reporter mocha-allure-reporter"
   },
   "keywords": [
     "pw",
