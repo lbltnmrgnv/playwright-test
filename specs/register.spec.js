@@ -1,11 +1,11 @@
 const { chromium } = require('playwright')
 const { assert, expect } = require('chai');
-const { RegisterPage } = require('../pages/registerPage');
+const { RegisterPage } = require('../pages/register.page');
 const faker = require("faker");
 //const { step } = require('../config/step')
 require('dotenv').config();
 
-describe('Register tests', function () {
+describe('Go to register page', function () {
 
     let page,
         browser,
@@ -17,14 +17,14 @@ describe('Register tests', function () {
         page = await context.newPage();
     })
 
-    it('Go to register page, filling all fields and click register button', async function () {
+    it('fill all fields and click register button', async function () {
         const registerPage = new RegisterPage(page)
         await registerPage.navigate()
         await registerPage.register(process.env.LOGIN, email = faker.internet.email(), process.env.PASSWORD)
         assert(page.url() === process.env.HOME_URL + `?first_name=${process.env.LOGIN}&email=${email.replace('@', '%40')}&password=${process.env.PASSWORD}&checkbox=on`, `Current url (${page.url()}) !== home url ${process.env.HOME_URL}?first_name=${process.env.LOGIN}&email=${email.replace('@', '%40')}&password=${process.env.PASSWORD}&checkbox=on`)
     })
 
-    it('Go to register page and click terms of service link', async function () {
+    it('click terms of service link', async function () {
         const registerPage = new RegisterPage(page)
         await registerPage.navigate()
         //Get page after clicking on terms link
@@ -36,7 +36,7 @@ describe('Register tests', function () {
         assert(newPage.url() === 'https://www.google.com/', `Current url (${newPage.url()}) !== google URL https://www.google.com`)
     })
 
-    it('Go to register page and click back to homepage link', async function () {
+    it('click back to homepage link', async function () {
         const registerPage = new RegisterPage(page)
         await registerPage.navigate()
         await registerPage.backToHomepage()
