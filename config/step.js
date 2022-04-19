@@ -1,16 +1,16 @@
 require("mocha-allure-reporter");
 
-function addStep(stepname, screenshot) {
-  const step = allure.createStep(stepname, () => {
+function step(stepname, stepFunc, screenshot) {
+  allure.createStep(stepname, () => {
+    stepFunc()
     if (screenshot) {
-      allure.createAttachment('Screen', () => {
+      allure.createAttachment('screen', () => {
         return screenshot;
-      }, 'png')();
+      }, 'image/png')()
     }
-  });
-  return step();
+  })();
 }
 
 module.exports = {
-    addStep
+  step
 }

@@ -11,20 +11,30 @@ class LoginPage {
         this.password = page.locator('*[name="password"]')
         this.loginButton = page.locator('#sub_btn')
         this.forgetPasswordLink = page.locator('.right-label')
+        this.registerLink = page.locator('text=Create an account')
+        this.backToHomepageLink = page.locator('text=Back to Homepage')
     }
 
     async navigate() {
         await this.page.goto(process.env.LOGIN_URL);
     }
 
-    async login() {
-        await this.firstName.fill(process.env.LOGIN)
-        await this.password.fill(process.env.PASSWORD)
+    async login(username, password) {
+        await this.firstName.fill(username)
+        await this.password.fill(password)
         await this.loginButton.click()
     }
 
-    async forgetPassword(){
+    async forgetPassword() {
         await this.forgetPasswordLink.click()
+    }
+
+    async createAnAccount() {
+        await this.registerLink.click()
+    }
+
+    async backToHomepage() {
+        await this.backToHomepageLink.click()
     }
 }
 module.exports = { LoginPage };
