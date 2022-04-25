@@ -9,6 +9,7 @@ class LandingPage {
         this.page = page;
         this.loginButton = page.locator('text=log in')
         this.registerButton = page.locator('button:has-text("register")')
+        this.pageTitle = page.locator('[class="main-title text-center"]')
     }
 
     async navigate() {

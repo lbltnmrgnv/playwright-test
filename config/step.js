@@ -1,14 +1,13 @@
-require("mocha-allure-reporter");
+const { allure } = require('allure-mocha/runtime');
 
-function step(stepname, stepFunc, screenshot) {
-  allure.createStep(stepname, () => {
-    stepFunc()
+function step(stepname, name, screenshot) {
+  allure.step(stepname, () => {
     if (screenshot) {
-      allure.createAttachment('screen', () => {
+      allure.attachment('screen', () => {
         return screenshot;
       }, 'image/png')()
     }
-  })();
+  });
 }
 
 module.exports = {

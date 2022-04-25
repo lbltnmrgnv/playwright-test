@@ -30,6 +30,11 @@ describe('Go to landing page', function () {
         expect(page.url()).eql(process.env.REGISTER_URL)
     })
 
+    it('check page title text', async () => {
+        const landingPage = new LandingPage(page)
+        await landingPage.navigate()
+        assert(await landingPage.pageTitle.innerText() === 'login / register page'.toUpperCase(), `Landing page title !== login / register page`)
+    })
 
     after(async function () {
         await browser.close()
