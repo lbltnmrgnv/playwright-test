@@ -1,10 +1,13 @@
-require('dotenv').config();
+import { Locator, Page } from '@playwright/test';
+import { config } from 'dotenv'
+config()
 
-class LandingPage {
-    
-    /**
-     * @param {import('playwright').Page} page 
-     */
+export class LandingPage {
+    readonly page: Page;
+    readonly loginButton: Locator;
+    readonly registerButton: Locator;
+    readonly pageTitle: Locator;
+
     constructor(page) {
         this.page = page;
         this.loginButton = page.locator('text=log in')
@@ -24,4 +27,3 @@ class LandingPage {
         await this.registerButton.click()
     }
 }
-module.exports = { LandingPage };

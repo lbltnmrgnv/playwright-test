@@ -1,10 +1,12 @@
-require('dotenv').config()
+import { Locator, Page } from '@playwright/test';
+import { config } from 'dotenv'
+config()
 
-class HomePage {
+export class HomePage {
+    readonly page: Page;
+    readonly logoutBtn: Locator;
+    readonly pageTitle: Locator;
 
-    /**
-     * @param {import('playwright').Page} page 
-     */
     constructor(page) {
         this.page = page;
         this.logoutBtn = page.locator('[class="primary-button"]')
@@ -18,8 +20,4 @@ class HomePage {
     async logout() {
         await this.logoutBtn.click()
     }
-}
-
-module.exports = {
-    HomePage
 }

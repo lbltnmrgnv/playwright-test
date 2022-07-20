@@ -1,10 +1,18 @@
-require('dotenv').config();
+import { Locator, Page } from '@playwright/test';
+import { config } from 'dotenv'
+config()
 
-class RegisterPage {
+export class RegisterPage {
 
-    /**
-     * @param {import('playwright').Page} page 
-     */
+    readonly page: Page;
+    readonly firstName: Locator;
+    readonly password: Locator;
+    readonly email: Locator;
+    readonly registerButton: Locator;
+    readonly termsCheckbox: Locator;
+    readonly termsLink: Locator;
+    readonly backToHomepageLink: Locator;
+
     constructor(page) {
         this.page = page;
         this.firstName = page.locator('*[name="first_name"]')
@@ -20,7 +28,7 @@ class RegisterPage {
         await this.page.goto(process.env.REGISTER_URL);
     }
 
-    async register(username, email, password) {
+    async register(username: string, email: string, password: string) {
         await this.firstName.fill(username)
         await this.email.fill(email)
         await this.password.fill(password)
@@ -36,4 +44,3 @@ class RegisterPage {
         await this.backToHomepageLink.click()
     }
 }
-module.exports = { RegisterPage };

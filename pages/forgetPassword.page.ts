@@ -1,10 +1,14 @@
-require('dotenv').config();
+import { Locator, Page } from '@playwright/test';
+import {config} from 'dotenv' 
+config()
 
-class ForgetPasswordPage {
-    
-    /**
-     * @param {import('playwright').Page} page 
-     */
+export class ForgetPasswordPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly sendEmailBtn: Locator;
+    readonly registerLink: Locator;
+    readonly backToHomepageLink: Locator;
+
     constructor(page) {
         this.page = page;
         this.emailInput = page.locator('*[name="email"]')
@@ -17,7 +21,7 @@ class ForgetPasswordPage {
         await this.page.goto(process.env.FORGET_PASSWORD_URL);
     }
 
-    async sendEmail(email) {
+    async sendEmail(email: string) {
         await this.emailInput.fill(email)
         await this.sendEmailBtn.click()
     }
@@ -30,4 +34,3 @@ class ForgetPasswordPage {
         await this.backToHomepageLink.click()
     }
 }
-module.exports = { ForgetPasswordPage };

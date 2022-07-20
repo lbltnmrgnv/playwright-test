@@ -1,18 +1,21 @@
-const { chromium } = require('playwright')
-const { expect, assert } = require('chai');
-const { ForgetPasswordPage } = require('../pages/forgetPassword.page');
-const faker = require('faker')
+import { chromium } from '@playwright/test'
+import { expect, assert } from 'chai';
+import { ForgetPasswordPage } from '../pages/forgetPassword.page';
+import * as faker from 'faker';
+
 //const { step } = require('../config/step')
-require('dotenv').config();
+import { config } from 'dotenv';
+config()
 
 describe('Go to forget password page', function () {
 
     let page,
         browser,
-        context;
+        context,
+        email
 
     before(async function () {
-        browser = await chromium.launch({ /*headless: false */ })
+        browser = await chromium.launch({ headless: false  })
         context = await browser.newContext()
         page = await context.newPage();
     })

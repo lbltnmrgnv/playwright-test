@@ -1,11 +1,20 @@
-require('dotenv').config();
+import { Locator, Page } from '@playwright/test';
+import {config} from 'dotenv' 
+config()
 
-class LoginPage {
 
-    /**
-     * @param {import('playwright').Page} page 
-     */
-    constructor(page) {
+export class LoginPage {
+
+    readonly page: Page;
+    readonly firstName: Locator;
+    readonly password: Locator;
+    readonly loginButton: Locator;
+    readonly forgetPasswordLink: Locator;
+    readonly registerLink: Locator;
+    readonly backToHomepageLink: Locator;
+
+
+    constructor(page: Page) {
         this.page = page;
         this.firstName = page.locator('*[name="first_name"]')
         this.password = page.locator('*[name="password"]')
@@ -19,7 +28,7 @@ class LoginPage {
         await this.page.goto(process.env.LOGIN_URL);
     }
 
-    async login(username, password) {
+    async login(username: string, password: string) {
         await this.firstName.fill(username)
         await this.password.fill(password)
         await this.loginButton.click()
@@ -37,4 +46,3 @@ class LoginPage {
         await this.backToHomepageLink.click()
     }
 }
-module.exports = { LoginPage };

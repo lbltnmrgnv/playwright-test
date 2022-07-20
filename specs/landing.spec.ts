@@ -1,8 +1,8 @@
-const { chromium } = require('playwright')
-const { expect, assert } = require('chai');
-const { LandingPage } = require('../pages/landing.page');
-//const { step } = require('../config/step')
-require('dotenv').config();
+import { chromium } from '@playwright/test'
+import { expect, assert } from 'chai';
+import { LandingPage } from '../pages/landing.page';
+import { config } from 'dotenv';
+config()
 
 describe('Go to landing page', function () {
 
@@ -11,7 +11,7 @@ describe('Go to landing page', function () {
         context;
 
     before(async function () {
-        browser = await chromium.launch({ /*headless: false */})
+        browser = await chromium.launch({ headless: false  })
         context = await browser.newContext()
         page = await context.newPage();
     })

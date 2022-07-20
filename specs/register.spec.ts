@@ -1,18 +1,19 @@
-const { chromium } = require('playwright')
-const { assert, expect } = require('chai');
-const { RegisterPage } = require('../pages/register.page');
-const faker = require("faker");
-//const { step } = require('../config/step')
-require('dotenv').config();
+import { chromium } from '@playwright/test'
+import { assert } from 'chai';
+import { RegisterPage } from '../pages/register.page';
+import * as faker from 'faker';
+import { config } from 'dotenv';
+config()
 
 describe('Go to register page', function () {
 
     let page,
         browser,
-        context
+        context,
+        email
 
     before(async function () {
-        browser = await chromium.launch({/* headless: false */})
+        browser = await chromium.launch({ headless: false })
         context = await browser.newContext()
         page = await context.newPage();
     })
