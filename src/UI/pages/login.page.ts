@@ -1,5 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import {config} from 'dotenv' 
+import { User } from '../../data/types';
+
 config()
 
 
@@ -28,9 +30,9 @@ export class LoginPage {
         await this.page.goto(process.env.LOGIN_URL);
     }
 
-    async login(username: string, password: string) {
-        await this.firstName.fill(username)
-        await this.password.fill(password)
+    async login(user: User) {
+        //await this.firstName.fill(user.username)
+        await this.password.fill(user.password)
         await this.loginButton.click()
     }
 
