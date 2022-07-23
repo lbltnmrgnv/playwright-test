@@ -2,33 +2,34 @@ import { expect, chromium } from '@playwright/test'
 import { assert } from 'chai';
 import { RegisterPage } from '../pages/register.page';
 import { config } from 'dotenv';
-import { user } from '../../data/UI/user';
+import { user } from '../../data/models/user';
 config()
 
-describe.only('Go to register page', function () {
+describe('Go to register page', async function () {
 
     let page,
         browser,
         context
 
-    before(async function () {
-        browser = await chromium.launch({ headless: false })
+    beforeEach(async function () {
+        browser = await chromium.launch({/* headless: false */ })
         context = await browser.newContext()
         page = await context.newPage();
     })
 
-    after(async function () {
-        //await browser.close()
+    afterEach(async function () {
+        await browser.close()
     })
 
     it('fill all fields with a valid values and click register button', async function () {
         const registerPage = new RegisterPage(page)
         await registerPage.navigate()
         const userData = user()
-        userData.confirm_password = userData.password
+        userData.confirmPassword = userData.password
         await registerPage.register(userData)
-        const alertResult: string = await registerPage.successAllert.innerText()
-        
+        const alertResult = registerPage.successAllert
+        expect(alertResult).toHaveText('You are successfully logged in now!h')
+
     })
 
     it('fill wrong confirm password and click register button', async function () {
@@ -36,7 +37,7 @@ describe.only('Go to register page', function () {
         await registerPage.navigate()
         const userData = user()
         await registerPage.register(userData)
-        const alertResult: string = await registerPage.dangerAllert.innerText()
-        expect(alertResult === 'Password & Confirmation password does not match', ':(')
+        const alertResult = registerPage.dangerAllert
+        expect(alertResult).toHaveText('Password & Confirmation password does not matchh')
     })
 })

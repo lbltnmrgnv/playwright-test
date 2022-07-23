@@ -4,8 +4,8 @@
   "description": "test playwright+mocha",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register ./src/UI/specs/**/*.spec.ts --no-timeout",
-    "test:reporter": "mocha --timeout 50000 ./specs/**/*.spec.ts --reporter allure-mocha"
+    "test": "mocha --require ts-node/register ./src/*/specs/**/*.spec.ts --no-timeout",
+    "test-reporter": "mocha --require ts-node/register ./src/*/specs/**/*.spec.ts --no-timeout --reporter allure-mocha"
   },
   "keywords": [
     "pw",
@@ -17,10 +17,14 @@
     "@playwright/test": "^1.23.4",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
+    "@types/supertest": "^2.0.12",
+    "allure-mocha": "^2.0.0-beta.18",
     "chai": "^4.3.6",
     "dotenv": "^16.0.1",
     "faker": "^5.5.3",
     "mocha": "^10.0.0",
+    "playwright": "^1.23.4",
+    "supertest": "^6.2.4",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }

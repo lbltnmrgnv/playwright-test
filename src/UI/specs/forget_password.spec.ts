@@ -1,4 +1,4 @@
-import { chromium } from '@playwright/test'
+/*import { chromium } from '@playwright/test'
 import { expect, assert } from 'chai';
 import { ForgetPasswordPage } from '../pages/forgetPassword.page';
 import * as faker from 'faker';
@@ -49,3 +49,4 @@ describe('Go to forget password page', function () {
 })
 
 
+*/

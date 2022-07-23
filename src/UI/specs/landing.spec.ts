@@ -2,17 +2,18 @@ import { chromium } from '@playwright/test'
 import { assert } from 'chai';
 import { LandingPage } from '../pages/landing.page';
 import { config } from 'dotenv';
+
 //import { expect } from '@playwright/test'
 config()
 
-describe.only('Go to landing page', function () {
+describe('Go to landing page', async function () {
 
     let page,
         browser,
         context;
 
     before(async () => {
-        browser = await chromium.launch({ headless: false })
+        browser = await chromium.launch({ /*headless: false */})
         context = await browser.newContext({ 'width': 1920, 'height': 1080 })
         page = await context.newPage();
     })

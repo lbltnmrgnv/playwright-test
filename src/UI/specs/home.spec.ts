@@ -1,4 +1,4 @@
-import { chromium } from '@playwright/test'
+/*import { chromium } from '@playwright/test'
 import { assert } from 'chai';
 import { HomePage } from '../pages/home.page';
 import { config } from 'dotenv';
@@ -32,4 +32,4 @@ describe('Go to homepage', function () {
     after(async function () {
         await browser.close()
     })
-})
+})*/

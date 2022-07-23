@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { config } from 'dotenv'
+import { step } from '../../reporter';
 config()
 
 export class LandingPage {
@@ -15,14 +16,17 @@ export class LandingPage {
         this.pageTitle = page.locator('a', {hasText: 'Geek Dashboard'})
     }
 
+    @step('Navigate to landing page')
     async navigate() {
         await this.page.goto(process.env.LANDING_URL);
     }
 
+    @step('Click to menu button')
     async clickToMenu() {
         await this.menuButton.click()
     }
 
+    @step('Click to login button')
     async clickToLogin() {
         await this.loginLink.click()
     }
