@@ -7,15 +7,11 @@ import { step } from '../../reporter'
 const request = supertest(process.env.LANDING_URL + 'api/auth/')
 
 export class Register {
+
     @step(`User signup`)
     async signUp(user: User) {
-        let response
-
-        response = request
+        return await request
             .post('register')
             .send(user)
-
-        return response
-
     }
 }

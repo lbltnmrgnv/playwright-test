@@ -16,7 +16,7 @@ async function stepAllure(name, callback) {
   try {
     const result = await callback();
     if (result) {
-      allure.attachment(`${name} result`, JSON.stringify(result, null, 2), ContentType.JSON);
+      allure.attachment(`${name} result`, JSON.stringify(result.body || result, null, 2), ContentType.JSON);
     }
     // set success result
     step.step.stepResult.status = 'passed';

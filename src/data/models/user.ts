@@ -1,6 +1,5 @@
 import { User } from "../types";
 import * as faker from 'faker';
-import { step } from "../../reporter";
 
 export function user(): User {
     return {

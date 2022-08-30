@@ -4,6 +4,7 @@ node_modules
 #allure
 allure-results
 allure-report
+allurectl
 
 ######################
 package-lock.json
