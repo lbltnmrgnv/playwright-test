@@ -1,13 +1,10 @@
 import { Locator, Page } from '@playwright/test';
-import { config } from 'dotenv'
-import { User } from '../../data/types';
-import { step } from '../../reporter';
+import * as config from '../config'
+import { step, attachJsonData } from '../reporter';
+import { BasePage } from '.';
+import { User } from '../components/register/types';
 
-config()
-
-export class RegisterPage {
-
-    readonly page: Page;
+export class SignUpPage extends BasePage {
     readonly email: Locator;
     readonly password: Locator;
     readonly confirmPassword: Locator;
@@ -16,7 +13,7 @@ export class RegisterPage {
     readonly dangerAllert: Locator;
 
     constructor(page) {
-        this.page = page;
+        super(page, 'SignUpPage', config.env.urls.base + 'signup')
         this.email = page.locator('#signup-email')
         this.password = page.locator('#signup-password')
         this.confirmPassword = page.locator('#signup-confirmPassword')
@@ -26,13 +23,9 @@ export class RegisterPage {
         this.dangerAllert = page.locator('[class="alert alert-danger fade show"]')
     }
 
-    @step(`Navigate to register page`)
-    async navigate() {
-        await this.page.goto(process.env.REGISTER_URL);
-    }
-
     @step('Register user')
     async register(user: User) {
+        attachJsonData('User info', user)
         await this.email.fill(user.email)
         await this.password.fill(user.password)
         await this.confirmPassword.fill(user.confirmPassword)

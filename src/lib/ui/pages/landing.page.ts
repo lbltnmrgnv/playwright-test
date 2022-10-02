@@ -1,24 +1,18 @@
 import { Locator, Page } from '@playwright/test';
-import { config } from 'dotenv'
-import { step } from '../../reporter';
-config()
+import { BasePage } from '.';
+import { step } from '../reporter';
+import * as config from '../config'
 
-export class LandingPage {
-    readonly page: Page;
+export class LandingPage extends BasePage {
     readonly menuButton: Locator;
     readonly loginLink: Locator;
     readonly pageTitle: Locator;
 
     constructor(page) {
-        this.page = page;
+        super(page, 'LandingPage', config.env.urls.base)
         this.menuButton = page.locator('button', { hasText: 'Menu' })
         this.loginLink = page.locator('a', {hasText: 'LogIn'})
         this.pageTitle = page.locator('a', {hasText: 'Geek Dashboard'})
-    }
-
-    @step('Navigate to landing page')
-    async navigate() {
-        await this.page.goto(process.env.LANDING_URL);
     }
 
     @step('Click to menu button')

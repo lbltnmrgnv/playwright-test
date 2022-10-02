@@ -1,20 +1,15 @@
-import { Locator, Page } from '@playwright/test';
-import { config } from 'dotenv'
-config()
+import { Locator } from '@playwright/test';
+import { BasePage } from '.'
+import * as config from '../../config'
 
-export class HomePage {
-    readonly page: Page;
+export class HomePage extends BasePage {
     readonly logoutBtn: Locator;
     readonly pageTitle: Locator;
 
     constructor(page) {
-        this.page = page;
+        super(page, 'HomePage', config.env.urls.base + 'home')
         this.logoutBtn = page.locator('[class="primary-button"]')
         this.pageTitle = page.locator('[class="main-title home-page-title"]')
-    }
-
-    async navigate() {
-        await this.page.goto(process.env.HOME_URL)
     }
 
     async logout() {

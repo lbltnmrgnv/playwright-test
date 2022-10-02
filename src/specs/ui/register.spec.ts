@@ -1,8 +1,8 @@
 import { expect, chromium } from '@playwright/test'
 import { assert } from 'chai';
-import { RegisterPage } from '../pages/register.page';
+import { SignUpPage } from '../../lib/pages/signup.page';
 import { config } from 'dotenv';
-import { user } from '../../data/models/user';
+import { user } from '../../lib/components/register/user';
 config()
 
 describe('Go to register page', async function () {
@@ -22,8 +22,8 @@ describe('Go to register page', async function () {
     })
 
     it('fill all fields with a valid values and click register button', async function () {
-        const registerPage = new RegisterPage(page)
-        await registerPage.navigate()
+        const registerPage = new SignUpPage(page)
+        await registerPage.goto()
         const userData = user()
         userData.confirmPassword = userData.password
         await registerPage.register(userData)
@@ -33,8 +33,8 @@ describe('Go to register page', async function () {
     })
 
     it('fill wrong confirm password and click register button', async function () {
-        const registerPage = new RegisterPage(page)
-        await registerPage.navigate()
+        const registerPage = new SignUpPage(page)
+        await registerPage.goto()
         const userData = user()
         await registerPage.register(userData)
         const alertResult = registerPage.dangerAllert

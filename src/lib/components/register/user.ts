@@ -1,4 +1,4 @@
-import { User } from "../types";
+import { User } from "./types";
 import * as faker from 'faker';
 
 export function user(): User {

@@ -1,9 +1,9 @@
 import { chromium } from '@playwright/test'
 import { expect, assert } from 'chai';
-import { LoginPage } from '../pages/login.page';
+import { LoginPage } from '../../lib/pages/login.page';
 import { config } from 'dotenv';
-import { user } from '../../data/models/user';
-import { User } from '../../data/types'
+import { user } from '../../lib/components/register/user';
+import { User } from '../../lib/components/register/types'
 config()
 
 describe('Go to Login page', function () {
@@ -20,7 +20,7 @@ describe('Go to Login page', function () {
 
     it('fill all fields and click login button', async function () {
         const loginPage = new LoginPage(page)
-        await loginPage.navigate()
+        await loginPage.goto()
         const loginUser: User = user()
         await loginPage.login(loginUser)
     })
