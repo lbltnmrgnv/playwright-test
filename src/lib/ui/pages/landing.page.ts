@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { BasePage } from '.';
-import { step } from '../reporter';
-import * as config from '../config'
+import { step } from '../../reporter';
+import * as config from '../../config'
 
 export class LandingPage extends BasePage {
     readonly menuButton: Locator;

@@ -1,6 +1,5 @@
 import { Page } from '@playwright/test';
 import { step } from '../../reporter';
-import { Element } from '../elements/base_element'
 
 export class BasePage {
     

@@ -1,4 +1,4 @@
-import { Register } from '../../lib/controllers/register.controller'
+import { Register } from '../../lib/api/controllers/register.controller'
 import { user } from '../../lib/components/register/user'
 import { assert } from 'chai'
 const register = new Register()

@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
-import * as config from '../config' 
-import { User } from '../components/register/types';
-import { step, attachJsonData } from '../reporter';
+import * as config from '../../config' 
+import { User } from '../../components/register/types';
+import { step, attachJsonData } from '../../reporter';
 import { BasePage } from '.';
 
 export class LoginPage extends BasePage {

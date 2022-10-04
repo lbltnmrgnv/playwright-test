@@ -1,6 +1,6 @@
 import { chromium } from '@playwright/test'
 import { assert } from 'chai';
-import { LandingPage } from '../../lib/pages/landing.page';
+import { LandingPage } from '../../lib/ui/pages/landing.page';
 import * as config from '../../lib/config'
 import {story, suite, feature} from '../../lib/reporter'
 

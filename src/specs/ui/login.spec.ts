@@ -1,6 +1,6 @@
 import { chromium } from '@playwright/test'
 import { expect, assert } from 'chai';
-import { LoginPage } from '../../lib/pages/login.page';
+import { LoginPage } from '../../lib/ui/pages/login.page';
 import { config } from 'dotenv';
 import { user } from '../../lib/components/register/user';
 import { User } from '../../lib/components/register/types'
