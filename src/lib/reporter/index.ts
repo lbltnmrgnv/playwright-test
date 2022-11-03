@@ -1,5 +1,5 @@
 import { allure } from 'allure-mocha/runtime'
-import { stepAllure} from './allure';
+import { stepAllure } from './allure';
 import { ContentType } from 'allure-js-commons';
 
 export function step(stepName: string | Function) {
@@ -33,6 +33,8 @@ export async function attachScreenshot(title, png) {
   return allure.attachment(title, Buffer.from(png, 'base64'), ContentType.PNG);
 }
 
-export function attachJsonData(title: string, data: object) {
-  return allure.attachment(title, JSON.stringify(data, null, 2), ContentType.JSON);
+export function attachJsonData(title: string, data: object | string) {
+  let attachedData
+  typeof data === 'object' ? attachedData = JSON.stringify(data, null, 2) : attachedData = data
+  return allure.attachment(title, attachedData, ContentType.JSON);
 }

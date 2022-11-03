@@ -2,7 +2,7 @@ import { Locator, Page } from '@playwright/test';
 import * as config from '../../config'
 import { step, attachJsonData } from '../../reporter';
 import { BasePage } from '.';
-import { User } from '../../components/register/types';
+import { User } from '../../components/pet/types';
 
 export class SignUpPage extends BasePage {
     readonly email: Locator;

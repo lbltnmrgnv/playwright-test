@@ -2,8 +2,8 @@ import { chromium } from '@playwright/test'
 import { expect, assert } from 'chai';
 import { LoginPage } from '../../lib/ui/pages/login.page';
 import { config } from 'dotenv';
-import { user } from '../../lib/components/register/user';
-import { User } from '../../lib/components/register/types'
+import { user } from '../../lib/components/pet/model';
+import { User } from '../../lib/components/pet/types'
 config()
 
 describe('Go to Login page', function () {

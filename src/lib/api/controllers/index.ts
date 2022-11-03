@@ -1,11 +1,11 @@
-import * as supertest from 'supertest'
+import { RequestBuilder } from '..'
 
 export class BaseController {
-    readonly request
+    readonly request: RequestBuilder
     readonly url
     readonly name: string
     constructor(url: string, name: string) {
-        this.request = supertest(url)
+        this.request = new RequestBuilder(url)
         this.url = url
         this.name = name ? name : BaseController.name
     }

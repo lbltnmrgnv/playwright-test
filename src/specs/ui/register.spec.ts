@@ -2,7 +2,7 @@ import { expect, chromium } from '@playwright/test'
 import { assert } from 'chai';
 import { SignUpPage } from '../../lib/ui/pages/signup.page';
 import { config } from 'dotenv';
-import { user } from '../../lib/components/register/user';
+import { user } from '../../lib/components/pet/model';
 config()
 
 describe('Go to register page', async function () {
