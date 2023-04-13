@@ -1,0 +1,6 @@
+{
+    "require": "ts-node/register",
+    "timeout": 5000,
+    "spec": "./src/specs/api/*.spec.ts",
+    "reporter": "allure-mocha"
+}

@@ -2,17 +2,15 @@ import { allure } from 'allure-mocha/runtime'
 import { stepAllure } from './allure';
 import { ContentType } from 'allure-js-commons';
 
-export function step(stepName: string | Function) {
-
-  return function (_targetL: Object, _name: string, descriptor: PropertyDescriptor) {
+export function step(stepName: string | Function, stepFunction?: Function) {
+  if (stepFunction) { allure.createStep(stepName as string, stepFunction) }
+  else return function (_targetL: Object, _name: string, descriptor: PropertyDescriptor) {
     const originalValue = descriptor.value;
-
     descriptor.value = function (...args) {
       let localStepName = stepName;
       localStepName = '\n' + ((typeof localStepName === 'string' ? localStepName : localStepName(this.name)) as string);
       return stepAllure(localStepName, originalValue.bind(this, ...args));
     }
-
     return descriptor;
   }
 }

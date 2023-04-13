@@ -1,5 +1,5 @@
 module.exports = {
-    pet: {
+    pet_schema: {
         "type": "object",
         "properties": {
             "id": {

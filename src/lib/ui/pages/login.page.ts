@@ -3,8 +3,8 @@ import * as config from '../../config'
 import { User } from '../../components/pet/types';
 import { step, attachJsonData } from '../../reporter';
 import { BasePage } from '.';
-import { InputElement, InputInterface } from '../elements/input';
-import { ButtonInterface, ButtonElement } from '../elements/button';
+import { InputElement, InputInterface } from '../components/input';
+import { ButtonInterface, ButtonElement } from '../components/button';
 
 export class LoginPage extends BasePage {
 

@@ -1,18 +1,30 @@
-import { PetController } from '../../lib/api/controllers/pet.controller'
+import { test, TestResponse, TestRequest } from '../../lib/fixtures/api.fixture'
 import * as models from '../../lib/components/pet/model'
-import { assert } from 'chai'
-const pet = new PetController()
+import { pet_schema } from '../../lib/components/pet/schemas'
+import { step } from '../../lib/reporter'
+import { headers } from '../../lib/api/headers'
 
-describe('Send POST request to /register', async () => {
+test.describe('Send POST request to /register', async () => {
 
-    it('with valid params in request body', async () => {
+    test('with valid params in request body', async ({ petController, assertHelper }) => {
         //Arrange
-        const data = models.pet()
+        let request: TestRequest,
+            response: TestResponse;  
+        step('Arrange', () => {
+            request.body = models.pet()
+            request.headers = headers.default()
+        })
 
         //Act
-        const res = await pet.create(data)
+        step('Act', async () => {
+            response = await petController.create(request)
+        })
 
         //Assert
-        assert(res.statusCode === 200, `Response status code (${res.statusCode}) do not eql 200`)
+        step('Assert', () => {
+            assertHelper
+                .statusAssert(response, 200)
+                .jsonSchemaValidation(response.body, pet_schema)
+        })
     })
 })
